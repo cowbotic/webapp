@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Una App cualquiera</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="page">
+        <h1>Una App cualquiera</h1>
+            {% block particular %}{% endblock %}
+        </div>
+        <div class=bottom>
+            <img src="static/capside.png" height=60px>
+        </div>
+    </body>
+</html>

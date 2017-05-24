@@ -1,0 +1,24 @@
+{% extends "plantillappal.html" %}
+{% block particular %}
+<div class="cajita">
+  <h2>¿Cu&aacutentos meteoritos te han ca&iacutedo cerca?</h2>
+  <form action="{{ url_for('conecta') }}" method="post">
+    <dl>
+      <dd>Nombre de la Cuenta Cosmos
+      <dd><input type="text" name="account">
+      <dd>Nombre de la BBDD
+      <dd><input type="text" name="db_name">
+      <dd>Nombre de la colecci&oacuten
+      <dd><input type="text" name="coll_name">
+      <dd>Master Key
+      <dd><input type="text" name="master_key">
+      
+      <dd>Longitud 
+      <dd><input type="text" name="lon">
+      <dd>Latitud 
+      <dd><input type="text" name="lat">
+      <dd><button type="submit" class="button" value="Consulta">Consultar</button>
+    </dl>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "plantillappal.html" %}
+{% block particular %}
+        <div class="cajita">
+            <p style="font-size: 200%">¡¡Bienvenido!!</p>
+            <ul>
+                <li> 
+                    <a href="{{ url_for('datos') }}"> Haz consultas geogr&aacuteficas a Cosmos DB </a>
+                </li>
+                <li> 
+                    <a href="{{ url_for('datos') }}"> Calcula decimales de &#960 </a>
+                </li>
+            </ul>
+        </div>
+{% endblock %}
