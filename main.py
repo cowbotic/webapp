@@ -1,9 +1,6 @@
 from flask import Flask, render_template, url_for, request
 app = Flask(__name__)
 
-
-app.config.from_envvar('FLASK_GLOBAL')
-
 @app.route('/')
 def hello():
   return render_template('hello.html')
