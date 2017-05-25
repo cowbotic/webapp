@@ -2,23 +2,51 @@
 {% block particular %}
 <div class="cajita">
   <h2>¿Cu&aacutentos meteoritos te han ca&iacutedo cerca?</h2>
-  <form action="{{ url_for('conecta') }}" method="post">
-    <dl>
-      <dd>Nombre de la Cuenta Cosmos
-      <dd><input type="text" name="account">
-      <dd>Nombre de la BBDD
-      <dd><input type="text" name="db_name">
-      <dd>Nombre de la colecci&oacuten
-      <dd><input type="text" name="coll_name">
-      <dd>Master Key
-      <dd><input type="text" name="master_key">
-      
-      <dd>Longitud 
-      <dd><input type="text" name="lon">
-      <dd>Latitud 
-      <dd><input type="text" name="lat">
-      <dd><button type="submit" class="button" value="Consulta">Consultar</button>
-    </dl>
+  
+  <form action="{{ url_for('conecta') }}" method="post" class="basic-grey">
+
+    <label>
+      <span>Cuenta CosmosDB</span>
+      <input type="text" name="account" value="meteoritos">
+    </label>
+
+    <label>
+      <span>BBDD</span>
+      <input type="text" name="db_name" value="meteoritos">
+    </label>
+
+    <label>
+      <span>Colecci&oacuten</span>
+      <input type="text" name="coll_name" value="meteoritos">
+    </label>
+
+    <label>  
+      <span>Master Key</span>
+      <input type="text" name="master_key">
+    </label> 
+
+    <label>  
+      <span>Longitud </span>
+      <input type="text" name="lon" value="-3.42">
+    </label>
+
+    <label>  
+      <span>Latitud</span>
+      <input type="text" name="lat" value="42.24">
+    </label>
+
+    <label>  
+      <span>Key para srv de mapas</span>
+      <input type="text" name="maps_key"> 
+    </label>
+
+    <label>  
+      <span>Distancia de b&uacutesqueda (metros) </span>
+      <input type="text" name="dist" value="300000"> 
+    </label>    
+    
+    <button type="submit" class="button" value="Consulta">Consultar</button>
+
   </form>
 </div>
 {% endblock %}

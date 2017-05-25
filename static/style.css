@@ -24,3 +24,72 @@ h2              { font-size: 1.2em; }
 .button:active  { transform: translateY(3px);box-shadow: 0 3px #377BAA;}
 .error          { background: #F0D6D6; padding: 0.5em; }
 .bottom         { position: absolute; right: 10px; bottom: 5px; }
+
+.basic-grey {
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 1200px;
+    background: #F7F7F7;
+    padding: 25px 15px 25px 10px;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #E4E4E4;
+}
+.basic-grey h1 {
+    font-size: 25px;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom:1px solid #E4E4E4;
+    margin: -10px -15px 30px -10px;;
+    color: #888;
+}
+.basic-grey h1>span {
+    display: block;
+    font-size: 18px;
+}
+.basic-grey label {
+    display: block;
+    margin: 0px;
+}
+.basic-grey label>span {
+    float: left;
+    width: 45%;
+    text-align: left;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #377BA8;
+    font-size: 20px;
+    font-family: 'Fira Sans Extra Condensed';
+}
+.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey textarea, .basic-grey select {
+    border: 1px solid #DADADA;
+    color: #888;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 50%;
+    font-size: 18px;
+    line-height:15px;
+    font-family: 'Fira Sans Extra Condensed';
+}
+.basic-grey textarea{
+    padding: 3px 2px 2px 3px;
+}
+.basic-grey select {
+    background: #FFF url('down-arrow.png') no-repeat right;
+    background: #FFF url('down-arrow.png') no-repeat right);
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+    height: 35px;
+    line-height: 25px;
+}
+.basic-grey textarea{
+    height:100px;
+}

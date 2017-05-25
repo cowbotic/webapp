@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request
 import os, socket, sys, random, time, math, functools
+import pydocumentdb.document_client as document_client
 
 #####################################################################
 #Métodos de ayuda y cálculo
@@ -44,12 +45,37 @@ def calcula():
 @app.route('/conecta', methods=['GET', 'POST'])
 def conecta(methods=['POST']):
     if request.method=='POST':
-        account_name=int(request.form['account'])
-        db_name=int(request.form['db_name'])
-        coll_name=int(request.form['coll_name'])
-        master_key=int(request.form['master_key'])
-        lon=int(request.form['lon'])
-        lat=int(request.form['lat'])
+        account_name=request.form['account']
+        db_name=request.form['db_name']
+        coll_name=request.form['coll_name']
+        master_key=request.form['master_key']
+        lon=float(request.form['lon'])
+        lat=float(request.form['lat'])
+        maps_api_key=request.form['maps_key']
+        distancia_centro=str(request.form['dist'])
+
+        cliente = document_client.DocumentClient('https://'+account_name+'.documents.azure.com', {'masterKey': master_key})
+        bbdd=cliente.ReadDatabase('dbs/'+db_name)
+        coleccion=cliente.ReadCollection('dbs/'+db_name+'/colls/'+coll_name)
+        id_coleccion=coleccion['_self']
+               
+        opciones={}
+        opciones['enableCrossPartitionQuery'] = True
+        consulta='SELECT c.Location.coordinates[0] as lon, c.Location.coordinates[1] as lat, c.mass_grams as masa, c.Name as nombre FROM c WHERE ST_DISTANCE(c.Location, { "type": "Point", "coordinates": ['+str(lon)+', '+str(lat)+'] }) <'+distancia_centro
+
+        salida = cliente.QueryDocuments(id_coleccion,consulta,opciones)
+        lista_salida=salida.fetch_next_block()
+
+        with open ('static/sitios.js','w') as fichero:
+            fichero.write('myData = [\n')
+            for elem in lista_salida:
+                m_name=elem['nombre'].replace(u"\ufeff", "")[1:].replace("'","`")
+                fichero.write('['+str(elem['lat'])+','+str(elem['lon'])+','+"'"+m_name+': '+str(elem['masa'])+" gramos'"+'],\n')
+            fichero.write('];')
+            fichero.close()
+        return render_template('mapa.html', latitud=lat, longitud=lon, maps_api_key=maps_api_key)
+        
+
 
 if __name__ == '__main__':
   app.run()

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Mapa de los meteoritos cerca de {{ latitud }},{{ longitud }} </title>
+    <link href="http://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+
+    <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+    <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
+    <script src="static/sitios.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSAWS3wIp4STR81KJPCg7TzBdG7F3BiVc"
+  type="text/javascript"></script>
+    <script>
+
+      function initialize() {
+        var myLatLng = new google.maps.LatLng({{ latitud }},{{ longitud }})
+        var mapOptions = {
+          zoom: 4,
+          center: myLatLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+        i = 0;
+        var markers = [];
+        for ( pos in myData ) {
+            i = i + 1;
+            var row = myData[pos];
+		    window.console && console.log(row);
+            // if ( i < 3 ) { alert(row); }
+            var newLatlng = new google.maps.LatLng(row[0], row[1]);
+            var marker = new google.maps.Marker({
+                position: newLatlng,
+                map: map,
+                title: row[2]
+            });
+            markers.push(marker);
+        }
+      }
+    </script>
+  </head>
+<body onload="initialize()">
+  <div id="map_canvas" style="height: 100%"></div>
+</body>
+</html>
